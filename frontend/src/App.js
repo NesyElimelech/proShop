@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreen from './pages/HomeScreen';
+import CartScreen from './pages/CartScreen';
+import LoginScreen from './pages/LoginScreen';
 import ProductScreen from './pages/ProductScreen';
 // Styles
 import { Container } from 'react-bootstrap';
@@ -14,9 +16,11 @@ const App = () => {
     <Router>
       <Header />
       <main className="py-5">
-        <Container>
+        <Container className="py-5">
           <Route path="/" component={HomeScreen} exact />
-          <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/cart" component={CartScreen} exact />
+          <Route path="/login" component={LoginScreen} exact />
+          <Route path="/products/:id" component={ProductScreen} />
         </Container>
       </main>
       <Footer />

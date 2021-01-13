@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// Data
+import axios from 'axios';
 // Components
 import Product from '../components/Product';
-// Data
-import products from '../products';
 // Styles
 import { Row, Col } from 'react-bootstrap';
 
 const HomeScreen = () => {
+  // Fetching data from the backend
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchedProducts = async () => {
+      const { data } = await axios.get('/api/products');
+      setProducts(data);
+    };
+    fetchedProducts();
+  }, []);
   return (
     <div className="mt-5">
       <h1>Latest Products</h1>
