@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// a reviews schema
 const reviewSchema = mongoose.Schema(
   {
     name: {
@@ -20,6 +21,7 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
+// a product schema
 const productSchema = mongoose.Schema(
   {
     user: {

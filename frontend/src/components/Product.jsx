@@ -6,6 +6,7 @@ import Rating from './Rating';
 // Styles
 import { Card } from 'react-bootstrap';
 
+// Renders a list of products cards in the homepage.
 const Product = ({ product }) => {
   return (
     <Card className="my-3 rounded">

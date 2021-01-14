@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 // Styles
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
+// Renders the navbar component
 const Header = () => {
   return (
     <header className="mb-5">

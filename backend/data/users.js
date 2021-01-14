@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 
+// Dummy data to seed into the database.
 const users = [
   {
     name: 'Admin User',

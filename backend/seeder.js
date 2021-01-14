@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import _mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import colors from 'colors';
+import _colors from 'colors';
 import users from './data/users.js';
 import products from './data/products.js';
 import User from './models/userModel.js';
@@ -11,6 +11,7 @@ import connectDB from './config/db.js';
 dotenv.config();
 connectDB();
 
+// Seeding the database with the dummy data.
 const importData = async () => {
   try {
     await Order.deleteMany();
@@ -36,6 +37,7 @@ const importData = async () => {
   }
 };
 
+// Deleting everything from the database.
 const destroyData = async () => {
   try {
     await Order.deleteMany();

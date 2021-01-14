@@ -5,12 +5,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 // Components
 import Rating from '../components/Rating';
-
 // Styles
 import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
 
 const ProductScreen = ({ match }) => {
-  // Fetching data from the backend
+  // Fetching data about single product from the backend
   const [product, setProduct] = useState({});
   useEffect(() => {
     const fetchProduct = async () => {

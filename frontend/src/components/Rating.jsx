@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Showing an stars icons instead of numbers
+
 const Rating = ({ value, text, color }) => {
   return (
     <div className="rating">
