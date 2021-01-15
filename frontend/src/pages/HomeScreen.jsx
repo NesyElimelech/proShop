@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-1">
         <h1>Latest Products</h1>
         {loading ? (
           <Loader />

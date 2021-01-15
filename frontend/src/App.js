@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import HomeScreen from './pages/HomeScreen';
 import CartScreen from './pages/CartScreen';
 import LoginScreen from './pages/LoginScreen';
+import ProfileScreen from './pages/ProfileScreen';
+import RegisterScreen from './pages/RegisterScreen';
 import ProductScreen from './pages/ProductScreen';
 // Styles
 import { Container } from 'react-bootstrap';
@@ -15,14 +17,16 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className="py-5">
-        <Container className="py-5">
+      <Container className="py-2 container">
+        <main className="py-5">
           <Route path="/" component={HomeScreen} exact />
           <Route path="/products/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/login" component={LoginScreen} />
-        </Container>
-      </main>
+          <Route path="/register" component={RegisterScreen} />
+          <Route path="/profile" component={ProfileScreen} />
+        </main>
+      </Container>
       <Footer />
     </Router>
   );
