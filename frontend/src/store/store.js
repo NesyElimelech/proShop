@@ -13,7 +13,10 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers';
-import { orderCreateReducer } from './reducers/orderReducers';
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+} from './reducers/orderReducers';
 
 // Combine all reducers to one variable so it can pass to the createStore
 const reducer = combineReducers({
@@ -25,6 +28,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 });
 // Load from data local storage
 const cartItemsFromStorage = localStorage.getItem('cartItems')
