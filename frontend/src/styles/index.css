@@ -30,7 +30,12 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
-
+strong {
+  font-weight: bold;
+}
+p {
+  font-size: 1rem;
+}
 button {
   font-family: 'Nunito', sans-serif;
 }
