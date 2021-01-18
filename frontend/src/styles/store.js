@@ -17,7 +17,6 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
-  myOrderListReducer,
 } from './reducers/orderReducers';
 
 // Combine all reducers to one variable so it can pass to the createStore
@@ -32,9 +31,8 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
-  myOrderList: myOrderListReducer,
 });
-// Load data from local storage
+// Load from data local storage
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
@@ -51,7 +49,6 @@ const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
   ? JSON.parse(localStorage.getItem('paymentMethod'))
   : {};
 
-// Initial state
 const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
@@ -63,7 +60,7 @@ const initialState = {
 // So we can do async operations with our database and state management
 const middleware = [thunk];
 
-// Connecting the app to redux and redux extension
+// Connecting the app to redux
 const store = createStore(
   reducer,
   initialState,

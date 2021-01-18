@@ -17,6 +17,9 @@ connectDB();
 app.get('/', (_req, res) => {
   res.send('Api is Running...');
 });
+app.get('/api/config/paypal', (_req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
 
 app.use(express.json());
 app.use('/api/products', productRoutes);

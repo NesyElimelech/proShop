@@ -66,3 +66,12 @@ button {
 .header {
   margin-bottom: 5rem;
 }
+
+table {
+  text-align: center;
+  box-shadow: 2px 2px 15px rgba(92, 89, 84, 0.4);
+}
+
+table th {
+  background-color: #fff;
+}

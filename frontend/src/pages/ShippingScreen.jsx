@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../store/actions/cartActions';
@@ -16,7 +16,14 @@ const ShippingScreen = ({ history }) => {
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
+  useEffect(() => {
+    if (!userInfo) {
+      history.push('/');
+    }
+  }, [history, userInfo]);
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
