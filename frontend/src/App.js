@@ -14,6 +14,10 @@ import ShippingScreen from './pages/ShippingScreen';
 import PaymentScreen from './pages/PaymentScreen';
 import PlaceorderScreen from './pages/PlaceorderScreen';
 import OrderDetailsScreen from './pages/OrderDetailsScreen';
+import UsersListScreen from './pages/UsersListScreen';
+import UserEditScreen from './pages/UserEditScreen';
+import ProductsListScreen from './pages/ProductsListScreen';
+import OrdersListScreen from './pages/OrdersListScreen';
 
 // Styles
 import { Container } from 'react-bootstrap';
@@ -34,6 +38,10 @@ const App = () => {
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceorderScreen} />
           <Route path="/order/:id" component={OrderDetailsScreen} />
+          <Route path="/admin/userslist" component={UsersListScreen} />
+          <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+          <Route path="/admin/productslist" component={ProductsListScreen} />
+          <Route path="/admin/orderslist" component={OrdersListScreen} />
         </main>
       </Container>
       <Footer />

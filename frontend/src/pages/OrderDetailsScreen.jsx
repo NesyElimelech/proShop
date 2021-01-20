@@ -64,8 +64,8 @@ const OrderDetailsScreen = ({ match }) => {
     <Message variant="danger" children={error} />
   ) : (
     <>
+      <h1>Order {order._id}</h1>
       <Row>
-        <h1>Order {order._id}</h1>
         <Col md={8} className="mb-2">
           <ListGroup variant="flush">
             <ListGroup.Item>

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// Router
-// import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -16,7 +14,7 @@ import Message from '../components/Message';
 import { Form, Button, Row, Col, Table } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -116,11 +114,7 @@ const ProfileScreen = ({ location, history }) => {
               onChange={(e) => setConfirmedPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Button
-            type="submit"
-            variant="secondary"
-            style={{ border: '1px solid black' }}
-          >
+          <Button type="submit" variant="outline-primary rounded">
             Update
           </Button>
         </Form>
@@ -165,7 +159,7 @@ const ProfileScreen = ({ location, history }) => {
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className="btn-sm" variant="light">
+                      <Button className="btn-sm" variant="light rounded">
                         Details
                       </Button>
                     </LinkContainer>
