@@ -42,7 +42,7 @@ const ProductScreen = ({ history, match }) => {
       ) : (
         <>
           <Row>
-            <Col md={6}>
+            <Col md={5}>
               <Image src={product.image} alt={product.name} fluid></Image>
             </Col>
             <Col md={3}>
@@ -56,9 +56,11 @@ const ProductScreen = ({ history, match }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: ${product.description};
+                  Price: <strong>${product.price}</strong>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Description: {product.description};
                 </ListGroup.Item>
               </ListGroup>
             </Col>

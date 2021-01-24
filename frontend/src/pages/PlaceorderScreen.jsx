@@ -10,7 +10,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 // Styles
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 
-const PlaceorderScreen = ({ history }) => {
+const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -141,7 +141,7 @@ const PlaceorderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn-block"
+                  className="btn-block place-order-button"
                   variant="outline-success rounded"
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
@@ -157,4 +157,4 @@ const PlaceorderScreen = ({ history }) => {
   );
 };
 
-export default PlaceorderScreen;
+export default PlaceOrderScreen;

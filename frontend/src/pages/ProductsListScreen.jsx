@@ -3,17 +3,29 @@ import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts, deleteProduct } from '../store/actions/productActions';
+import {
+  listProducts,
+  createProduct,
+  deleteProduct,
+} from '../store/actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../store/constants/productConstants';
 // Components
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 // Styles
 import { Table, Button, Modal, Row, Col } from 'react-bootstrap';
 
-const ProductsListScreen = ({ history, match }) => {
+const ProductsListScreen = ({ history }) => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
   const productDelete = useSelector((state) => state.productDelete);
   const {
     loading: loadingDelete,
@@ -32,14 +44,29 @@ const ProductsListScreen = ({ history, match }) => {
     }
     handleClose();
   };
-  const createProductHandler = (product) => {};
+  const createProductHandler = () => {
+    dispatch(createProduct());
+  };
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({
+      type: PRODUCT_CREATE_RESET,
+    });
+    if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo, successDelete]);
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
   return (
     <>
       <Row className="align-items-center">
@@ -58,7 +85,13 @@ const ProductsListScreen = ({ history, match }) => {
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger" children={errorDelete} />}
-      {successDelete && <Message variant="success" children={successDelete} />}
+      {successDelete && (
+        <Message variant="success" children={'Delete Successful'} />
+      )}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger" children={errorCreate} />}
+      {successCreate && <Message variant="success" children={successCreate} />}
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -111,7 +144,7 @@ const ProductsListScreen = ({ history, match }) => {
                         variant="danger"
                         onClick={() => deleteHandler(product._id)}
                       >
-                        Delete User
+                        Delete Product
                       </Button>
                     </Modal.Footer>
                   </Modal>

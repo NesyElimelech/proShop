@@ -37,7 +37,7 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
   return (
     <Row>
-      <Col md={8}>
+      <Col md={6}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
@@ -49,7 +49,7 @@ const CartScreen = ({ match, location, history }) => {
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.product}>
                   <Row>
-                    <Col md={2}>
+                    <Col lg={2}>
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -57,11 +57,11 @@ const CartScreen = ({ match, location, history }) => {
                         rounded
                       ></Image>
                     </Col>
-                    <Col md={3}>
+                    <Col lg={4}>
                       <Link to={`/products/${item.product}`}>{item.name}</Link>
                     </Col>
-                    <Col md={2}>${item.price}</Col>
-                    <Col md={2}>
+                    <Col lg={2}>${item.price}</Col>
+                    <Col lg={2}>
                       <Form.Control
                         as="select"
                         value={item.qty}
@@ -78,7 +78,7 @@ const CartScreen = ({ match, location, history }) => {
                         ))}
                       </Form.Control>
                     </Col>
-                    <Col md={2}>
+                    <Col lg={2}>
                       <Button
                         type="button"
                         variant="light"
@@ -97,7 +97,7 @@ const CartScreen = ({ match, location, history }) => {
           </>
         )}
       </Col>
-      <Col md={4}>
+      <Col md={{ span: 3, offset: 3 }}>
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
