@@ -30,6 +30,12 @@ const App = () => {
       <Container className="py-2" fluid>
         <main className="py-5 px-5">
           <Route path="/" component={HomeScreen} exact />
+          <Route path="/page/:pageNumber" component={HomeScreen} exact />
+          <Route path="/search/:keyword" component={HomeScreen} exact />
+          <Route
+            path="/search/:keyword/page/:pageNumber"
+            component={HomeScreen}
+          />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/profile" component={ProfileScreen} />
@@ -41,7 +47,16 @@ const App = () => {
           <Route path="/order/:id" component={OrderDetailsScreen} />
           <Route path="/admin/userslist" component={UsersListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-          <Route path="/admin/productslist" component={ProductsListScreen} />
+          <Route
+            path="/admin/productslist"
+            component={ProductsListScreen}
+            exact
+          />
+          <Route
+            path="/admin/productslist/:pageNumber"
+            component={ProductsListScreen}
+            exact
+          />
           <Route path="/admin/orderslist" component={OrdersListScreen} />
           <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
         </main>

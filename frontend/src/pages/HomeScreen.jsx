@@ -6,21 +6,24 @@ import { listProducts } from '../store/actions/productActions';
 import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Paginate from '../components/Paginate';
 // Styles
 import { Row, Col } from 'react-bootstrap';
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
+  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   // Fetching products list data from the database
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
-      <div className="mt-1">
+      <div className="mt-1 mb-5">
         <h1>Latest Products</h1>
         {loading ? (
           <Loader />
@@ -36,6 +39,7 @@ const HomeScreen = () => {
           </Row>
         )}
       </div>
+      <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
     </>
   );
 };

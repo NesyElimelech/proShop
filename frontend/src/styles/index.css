@@ -77,3 +77,14 @@ table th {
   font-size: 1rem;
   font-family: 'Nunito', sans-serif;
 }
+
+.searchbox {
+  margin: 0.3rem 0;
+  background-color: #ffffffca;
+  color: #232323;
+}
+
+.searchbox:focus,
+.searchbox:hover {
+  background-color: #ffffff;
+}

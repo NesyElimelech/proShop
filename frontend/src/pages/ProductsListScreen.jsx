@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+// components
+import Paginate from '../components/Paginate';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 // Router
 import { LinkContainer } from 'react-router-bootstrap';
 // Redux
@@ -9,16 +13,14 @@ import {
   deleteProduct,
 } from '../store/actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../store/constants/productConstants';
-// Components
-import Loader from '../components/Loader';
-import Message from '../components/Message';
 // Styles
 import { Table, Button, Modal, Row, Col } from 'react-bootstrap';
 
-const ProductsListScreen = ({ history }) => {
+const ProductsListScreen = ({ match, history }) => {
+  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   const productCreate = useSelector((state) => state.productCreate);
   const {
     loading: loadingCreate,
@@ -57,7 +59,7 @@ const ProductsListScreen = ({ history }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts('', pageNumber));
     }
   }, [
     dispatch,
@@ -66,6 +68,7 @@ const ProductsListScreen = ({ history }) => {
     successDelete,
     successCreate,
     createdProduct,
+    pageNumber,
   ]);
   return (
     <>
@@ -154,6 +157,7 @@ const ProductsListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
+      <Paginate pages={pages} page={page} isAdmin={true} />
     </>
   );
 };

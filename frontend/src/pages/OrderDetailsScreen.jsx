@@ -213,21 +213,20 @@ const OrderDetailsScreen = ({ history, match }) => {
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}
-              {!userInfo
-                ? history.push('/login')
-                : userInfo.isAdmin &&
-                  order.isPaid &&
-                  !order.isDelivered && (
-                    <ListGroup.Item>
-                      <Button
-                        type="button"
-                        className="btn btn-block"
-                        onClick={deliverHandler}
-                      >
-                        Mark As 'Out For Delivery'
-                      </Button>
-                    </ListGroup.Item>
-                  )}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverHandler}
+                    >
+                      Mark As 'Out For Delivery'
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>
