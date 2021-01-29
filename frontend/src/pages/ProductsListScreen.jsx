@@ -40,6 +40,7 @@ const ProductsListScreen = ({ match, history }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const deleteHandler = (id) => {
     if (show) {
       dispatch(deleteProduct(id));
@@ -157,7 +158,7 @@ const ProductsListScreen = ({ match, history }) => {
           </tbody>
         </Table>
       )}
-      <Paginate pages={pages} page={page} isAdmin={true} />
+      <Paginate pages={pages} page={page} isAdmin={true} url={'productslist'} />
     </>
   );
 };

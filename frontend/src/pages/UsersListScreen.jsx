@@ -7,13 +7,15 @@ import { listUsers, deleteUser } from '../store/actions/userActions';
 // Components
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Paginate from '../components/Paginate';
 // Styles
 import { Table, Button, Modal } from 'react-bootstrap';
 
-const UsersListScreen = ({ history }) => {
+const UsersListScreen = ({ match, history }) => {
+  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
   const usersList = useSelector((state) => state.usersList);
-  const { loading, error, users } = usersList;
+  const { loading, error, users, page, pages } = usersList;
   const [show, setShow] = useState(false);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -30,11 +32,11 @@ const UsersListScreen = ({ history }) => {
   };
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers());
+      dispatch(listUsers(pageNumber));
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo, successDelete]);
+  }, [dispatch, history, userInfo, successDelete, pageNumber]);
   return (
     <>
       {successDelete ? (
@@ -116,6 +118,7 @@ const UsersListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
+      <Paginate pages={pages} page={page} isAdmin={true} url={'userslist'} />
     </>
   );
 };

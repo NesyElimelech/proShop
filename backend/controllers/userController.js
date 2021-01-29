@@ -99,8 +99,13 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @access: Privet/Admin
 
 export const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
-  res.json(users);
+  const pageSize = 12;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await User.countDocuments();
+  const users = await User.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ users, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc:   Get user by ID

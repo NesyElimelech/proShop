@@ -182,7 +182,10 @@ export const getMyOrdersList = (orderId, paymentResult) => async (
   }
 };
 
-export const getOrdersList = (paymentResult) => async (dispatch, getState) => {
+export const getOrdersList = (paymentResult, pageNumber = '') => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({
       type: ORDER_LIST_REQUEST,
@@ -195,7 +198,10 @@ export const getOrdersList = (paymentResult) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get('/api/orders', config);
+    const { data } = await axios.get(
+      `/api/orders?pageNumber=${pageNumber}`,
+      config
+    );
     dispatch({
       type: ORDER_LIST_SUCCESS,
       payload: data,

@@ -11,24 +11,17 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 // Styles
 import { Button, Table } from 'react-bootstrap';
+import Paginate from '../components/Paginate';
 
-const OrdersListScreen = ({ history }) => {
+const OrdersListScreen = ({ match, history }) => {
+  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
   const ordersList = useSelector((state) => state.ordersList);
-  const { loading, error, orders } = ordersList;
+  const { loading, error, orders, page, pages } = ordersList;
 
-  // const [show, setShow] = useState(false);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-  // const deleteHandler = (id) => {
-  //   if (show) {
-  //     dispatch();
-  //   }
-  //   handleClose();
-  // };
   useEffect(() => {
     dispatch({
       type: ORDER_LIST_RESET,
@@ -37,8 +30,8 @@ const OrdersListScreen = ({ history }) => {
       history.push('/login');
     }
 
-    dispatch(getOrdersList());
-  }, [dispatch, history, userInfo]);
+    dispatch(getOrdersList({}, pageNumber));
+  }, [dispatch, history, userInfo, pageNumber]);
   return (
     <>
       <h1>Orders</h1>
@@ -98,6 +91,7 @@ const OrdersListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
+      <Paginate pages={pages} page={page} isAdmin={true} url={'orderslist'} />
     </>
   );
 };
