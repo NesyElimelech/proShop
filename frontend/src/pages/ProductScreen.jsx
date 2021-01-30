@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 // Styles
 import {
   Row,
@@ -61,6 +62,7 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <div className="my-5">
+      <Meta title={product.name} />
       {loading ? (
         <Loader />
       ) : error ? (

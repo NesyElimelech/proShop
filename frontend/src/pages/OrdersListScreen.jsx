@@ -9,6 +9,7 @@ import { ORDER_LIST_RESET } from '../store/constants/orderConstants';
 // Components
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 // Styles
 import { Button, Table } from 'react-bootstrap';
 import Paginate from '../components/Paginate';
@@ -34,6 +35,7 @@ const OrdersListScreen = ({ match, history }) => {
   }, [dispatch, history, userInfo, pageNumber]);
   return (
     <>
+      <Meta title="Orders List" />
       <h1>Orders</h1>
       {loading ? (
         <Loader />

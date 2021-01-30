@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // reducers
 import {
   productListReducer,
+  productTopRatedReducer,
   productDetailsReducer,
   productDeleteReducer,
   productCreateReducer,
@@ -32,6 +33,7 @@ import {
 // Combine all reducers to one variable so it can pass to the createStore
 const reducer = combineReducers({
   productList: productListReducer,
+  productTopRated: productTopRatedReducer,
   productDetails: productDetailsReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,

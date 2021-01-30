@@ -16,6 +16,7 @@ import FormContainer from '../components/FormContainer';
 // Styles
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import { PRODUCT_UPDATE_RESET } from '../store/constants/productConstants';
+import Meta from '../components/Meta';
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -90,11 +91,12 @@ const ProductEditScreen = ({ match, history }) => {
         description,
       })
     );
-    history.push('/admin/productslist');
+    history.replace('/admin/productslist');
   };
 
   return (
     <>
+      <Meta title={`Edit ${product.name}`} />
       <Link to="/admin/productslist" className="my-3 btn btn-light">
         Go Back
       </Link>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Paginate from '../components/Paginate';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 // Router
 import { LinkContainer } from 'react-router-bootstrap';
 // Redux
@@ -73,6 +74,7 @@ const ProductsListScreen = ({ match, history }) => {
   ]);
   return (
     <>
+      <Meta title="Products List" />
       <Row className="align-items-center">
         <Col>
           <h1>Products List</h1>

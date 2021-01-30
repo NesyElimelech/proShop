@@ -11,6 +11,7 @@ import Message from '../components/Message';
 import FormContainer from '../components/FormContainer';
 // Styles
 import { Form, Button } from 'react-bootstrap';
+import Meta from '../components/Meta';
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id;
@@ -50,6 +51,7 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title={`Edit ${user.name}`} />
       <Link to="/admin/userslist" className="my-3 btn btn-light">
         Go Back
       </Link>

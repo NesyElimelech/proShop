@@ -8,6 +8,7 @@ import { listUsers, deleteUser } from '../store/actions/userActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import Meta from '../components/Meta';
 // Styles
 import { Table, Button, Modal } from 'react-bootstrap';
 
@@ -39,6 +40,7 @@ const UsersListScreen = ({ match, history }) => {
   }, [dispatch, history, userInfo, successDelete, pageNumber]);
   return (
     <>
+      <Meta title="Users List" />
       {successDelete ? (
         <Message variant="success" children={'User deleted'} />
       ) : (

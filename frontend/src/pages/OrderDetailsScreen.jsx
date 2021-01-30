@@ -17,6 +17,7 @@ import {
 // Components
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Meta from '../components/Meta';
 // Styles
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 
@@ -84,6 +85,7 @@ const OrderDetailsScreen = ({ history, match }) => {
     <Message variant="danger" children={error} />
   ) : (
     <>
+      <Meta title={`Order ${order._id} details`} />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8} className="mb-2">
