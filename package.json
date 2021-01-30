@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "engines": {
-    "node": "15.5.x"
+    "node": "15.5.x",
+    "npm": "7.x"
   },
   "scripts": {
     "start": "node backend/server",
