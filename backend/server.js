@@ -15,16 +15,15 @@ const __dirname = path.resolve();
 const port = process.env.PORT || 5000;
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
-
 config();
 connectDB();
 
-app.get('/', (_req, res) => {
-  res.send('Api is Running...');
-});
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+  app.get('/', (_req, res) => {
+    res.send('Api is Running...');
+  });
+}
 app.get('/api/config/paypal', (_req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
@@ -36,13 +35,21 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  app.get('*', (_req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+}
+
 app.use(notFound);
 app.use(errorHandler);
-
 app.listen(
   port,
   console.log(
     `Server is running in ${process.env.NODE_ENV} mode on port ${port}`.yellow
       .bold
-  )
+  ),
+  console.log(`You can visit it on http://localhost:${port}`.blue.bold)
 );
