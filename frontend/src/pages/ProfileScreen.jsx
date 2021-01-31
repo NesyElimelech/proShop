@@ -6,6 +6,7 @@ import {
   updateUserProfile,
 } from '../store/actions/userActions';
 import { getMyOrdersList } from '../store/actions/orderActions';
+import { USER_UPDATE_PROFILE_RESET } from '../store/constants/userConstants';
 // Components
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -38,7 +39,8 @@ const ProfileScreen = ({ history }) => {
     if (!userInfo) {
       history.push('/login');
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile'));
         dispatch(getMyOrdersList());
       } else {
@@ -46,7 +48,7 @@ const ProfileScreen = ({ history }) => {
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, success]);
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmedPassword) {
