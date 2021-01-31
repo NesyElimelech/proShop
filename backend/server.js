@@ -2,6 +2,9 @@ import express from 'express';
 import enforce from 'express-sslify';
 import path from 'path';
 import { config } from 'dotenv';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import compression from 'compression';
 import connectDB from './config/db.js';
 import _colors from 'colors';
 import morgan from 'morgan';
@@ -18,6 +21,11 @@ const app = express();
 
 config();
 connectDB();
+
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
