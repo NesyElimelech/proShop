@@ -16,7 +16,7 @@
     "build": "cd frontend && npm run build",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "cd frontend && npm install && npm install --only=dev --no-shrinkwrap && npm build"
+    "heroku-postbuild": "cd frontend &&npm install react-paypal-button-v2 --force && npm install && npm install --only=dev --no-shrinkwrap && npm build"
   },
   "repository": {
     "type": "git",
