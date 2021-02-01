@@ -15,13 +15,14 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 // Middleware
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+
 const __dirname = path.resolve();
 const port = process.env.PORT || 5000;
 const app = express();
 
 config();
 connectDB();
-
+app.use(express.static('.'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
     res.send('Api is Running...');
   });
 }
+
 app.get('/api/config/paypal', (_req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
@@ -42,14 +44,13 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
-
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-  app.use(express.static(path.join(__dirname, 'frontend/build')));
-  app.get('*', (_req, res) =>
-    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'))
+  app.use(express.static(path.join(__dirname, './frontend/build')));
+  app.get('/*', (_req, res) =>
+    res.sendFile(path.join(__dirname, './frontend/build', 'index.html'))
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PayPalButton } from 'react-paypal-button-v2';
 // Router
 import { Link } from 'react-router-dom';
 // Redux
@@ -18,6 +17,8 @@ import {
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
+import { PayPalButton } from 'react-paypal-button-v2';
+
 // Styles
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 
