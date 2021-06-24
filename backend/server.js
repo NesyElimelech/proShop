@@ -3,7 +3,6 @@ import enforce from 'express-sslify';
 import path from 'path';
 import { config } from 'dotenv';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import compression from 'compression';
 import connectDB from './config/db.js';
 import _colors from 'colors';
